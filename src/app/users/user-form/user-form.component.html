@@ -1,0 +1,56 @@
+<mat-toolbar color="primary">
+  <span>{{userId ? 'Edit' : 'Add'}} User</span>
+</mat-toolbar>
+
+<form [formGroup]="userForm" (ngSubmit)="submitUserForm()" class="user-form">
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="firstName">
+    <mat-error *ngIf="form['firstName'].invalid && form['firstName'].touched">
+      <span *ngIf="  form['firstName'].hasError('required')">
+        *Please enter first Name.
+      </span>
+      <span *ngIf="form['firstName'].hasError('pattern')">
+        *Please enter a valid first name (No space at start or end).
+      </span>
+      <span *ngIf="form['firstName'].hasError('maxlength')">
+        *Please enter no more than {{form["firstName"].errors!["maxlength"].requiredLength}} characters.
+      </span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="lastName">
+    <mat-error *ngIf="form['lastName'].invalid && form['lastName'].touched">
+      <span *ngIf="  form['lastName'].hasError('required')">
+        *Please enter last Name.
+      </span>
+      <span *ngIf="form['lastName'].hasError('pattern')">
+        *Please enter a valid last name (No space at start or end).
+      </span>
+      <span *ngIf="form['lastName'].hasError('maxlength')">
+        *Please enter no more than {{form["lastName"].errors!["maxlength"].requiredLength}} characters.
+      </span>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Birth Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="birthdate" [max]="maxDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="form['birthdate'].invalid && form['birthdate'].touched">
+      *Please select birth date
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" appearance="standard">
+    <mat-label>Is Active</mat-label>
+    <mat-slide-toggle formControlName="isActive" color="primary"></mat-slide-toggle>
+    <textarea matInput hidden></textarea>
+  </mat-form-field>
+  <div class="btn-group">
+    <button mat-raised-button color="warn" type="button" (click)="back()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" class="submit-button">Submit</button>
+  </div>
+</form>

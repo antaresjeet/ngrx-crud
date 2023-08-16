@@ -1,0 +1,28 @@
+.user-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+  padding: 16px;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.is-active-checkbox {
+  margin-top: 8px;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  width: 100%;
+  margin-top: 16px;
+}
